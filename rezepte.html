@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Green Plate | Rezepte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
         (function () {
             try {
@@ -21,32 +21,53 @@
         })();
     </script>
     <style>
+        /* CSS VARIABLEN */
         :root {
+            /* Standard: Light Mode (Beige) */
             --bg-color: #f9f7f2;
-            --text-dark: #1a1a1a;
+            --text-color: #1a1a1a;
             --accent-gold: #c5a059;
             --border-light: #e0dcd0;
-            --white: #ffffff;
+            --white: #ffffff; /* Hintergrund der Kästen */
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* DARK MODE VARIABLEN */
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f9f7f2;
+            --border-light: #333333;
+            --white: #252525; /* Kästen werden im Darkmode dunkelgrau */
+        }
+
+        /* GLOBALE STYLES */
         body {
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            color: var(--text-dark);
+            color: var(--text-color);
             font-family: var(--font-sans);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color var(--transition), color var(--transition);
         }
 
+        /* --- HEADER --- */
         header {
-            padding: 80px 20px 40px 20px;
+            background-color: var(--bg-color);
+            padding: 60px 0 30px 0;
             text-align: center;
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+            transition: background-color var(--transition), border-color var(--transition);
         }
 
         header h1 {
             font-family: var(--font-serif);
-            font-size: 3rem;
+            font-size: 3.5rem;
             letter-spacing: 5px;
             margin: 0 0 20px 0;
             text-transform: uppercase;
@@ -56,6 +77,7 @@
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
             display: flex;
             justify-content: center;
             gap: 40px;
@@ -63,21 +85,56 @@
 
         nav a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-color);
             font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: color 0.3s;
+            transition: color var(--transition);
+            font-weight: 400;
         }
 
         nav a:hover {
             color: var(--accent-gold);
         }
 
+        /* --- MODE TOGGLE ICON --- */
+        .theme-toggle {
+            position: absolute;
+            right: 40px;
+            top: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-gold);
+        }
+
+        .theme-toggle svg {
+            fill: currentColor;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Logik: Zeige Mond im Light Mode, Sonne im Dark Mode */
+        body.dark-mode .moon-icon,
+        body:not(.dark-mode) .sun-icon {
+            display: none;
+        }
+
         /* FILTER STYLING */
         .filter-section {
             text-align: center;
-            margin-bottom: 50px;
+            margin: 50px 0;
         }
 
         .filter-section label {
@@ -91,36 +148,36 @@
         #recipe-sort {
             padding: 10px 20px;
             font-family: var(--font-sans);
-            background-color: var(--white);
+            background-color: var(--bg-color);
             border: 1px solid var(--border-light);
-            color: var(--text-dark);
+            color: var(--text-color);
             border-radius: 50px;
             outline: none;
             cursor: pointer;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, background-color var(--transition), color var(--transition);
         }
 
         #recipe-sort:focus {
             border-color: var(--accent-gold);
         }
 
+        /* CONTAINER & KÄSTEN */
         .container {
             max-width: 980px;
-            margin: 20px auto 60px auto;
+            margin: 0 auto 60px auto;
             padding: 0 20px;
         }
 
-        /* REZEPT-BANNER STYLING */
         .recipe-banner {
             display: flex;
             align-items: center;
             background-color: var(--white);
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-color);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition);
             border: 1px solid var(--border-light);
             margin-bottom: 30px;
         }
@@ -146,11 +203,12 @@
             font-family: var(--font-serif);
             font-size: 1.8rem;
             margin: 0 0 10px 0;
+            color: var(--text-color);
         }
 
         .banner-content p {
             font-size: 0.9rem;
-            color: #666;
+            opacity: 0.8;
             margin: 0;
             line-height: 1.4;
             font-style: italic;
@@ -158,25 +216,43 @@
 
         footer {
             text-align: center;
-            padding: 40px;
-            font-size: 0.75rem;
-            color: #888;
+            padding: 80px 20px;
+            border-top: 1px solid var(--border-light);
             margin-top: 50px;
         }
+
+        .footer-nav { margin-top: 20px; }
+
+        .footer-nav a {
+            color: var(--text-color);
+            opacity: 0.5;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+
+        .footer-nav a:hover { opacity: 1; }
 
         @media (max-width: 720px) {
             .recipe-banner { display: block; }
             .banner-image, .banner-content { width: 100%; }
+            .banner-content { box-sizing: border-box; }
+            .theme-toggle { right: 20px; top: 30px; }
+            header h1 { font-size: 2.5rem; }
         }
     </style>
+    <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
     <header>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Modus wechseln">
-            <span class="theme-toggle__icon theme-toggle__icon--moon">☾</span>
-            <span class="theme-toggle__icon theme-toggle__icon--sun">☀</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema umschalten">
+            <svg class="sun-icon" viewBox="0 0 20 20"><path d="M10 15a5 5 0 100-10 5 5 0 000 10zM10 0a1 1 0 011 1v1a1 1 0 11-2 0V1a1 1 0 011-1zm0 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm8-8a1 1 0 011 1h-1a1 1 0 110-2h1a1 1 0 011 1zM2 9a1 1 0 011 1H2a1 1 0 110-2h1a1 1 0 011 1zm14.071-6.071a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM5.343 13.243a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zm10.142 0a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM4.636 2.929a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414z"/></svg>
+            <svg class="moon-icon" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
         </button>
+
         <h1>The Green Plate</h1>
         <nav>
             <ul>
@@ -204,11 +280,13 @@
     </div>
 
     <main class="container" id="recipe-list">
+        <h2 style="font-family: var(--font-serif); text-align: center; margin-bottom: 40px; width: 100%;">Unsere Auswahl</h2>
+
         <a href="mediterranegemüsepfanne.html" class="recipe-banner" data-kcal="280" data-protein="6" data-fat="14" data-carb="28" data-order="1">
             <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80');"></div>
             <div class="banner-content">
                 <h2>Mediterrane Gemüsepfanne</h2>
-                <p>Eine Komposition aus sonnengereiftem Gemüse, veredelt mit feinstem Olivenöl.</p>
+                <p>Eine Komposition aus sonnengereiftem Gemüse, veredelt mit feinstem Olivenöl und frischen Gartenkräutern.</p>
             </div>
         </a>
 
@@ -216,28 +294,28 @@
             <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80');"></div>
             <div class="banner-content">
                 <h2>Wildkräutersalat & Burrata</h2>
-                <p>Frische Wildkräuter treffen auf cremig-zarte Burrata und geröstete Walnüsse.</p>
+                <p>Frische Wildkräuter treffen auf cremig-zarte Burrata und geröstete Walnüsse. Ein leichtes Highlight für Genießer.</p>
             </div>
         </a>
 
         <a href="geroesteter-blumenkohl-mit-goldener-tahini-und-granatapfel.html" class="recipe-banner" data-kcal="210" data-protein="8" data-fat="12" data-carb="18" data-order="3">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1633510522431-778832a829f0?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1633510522431-778832a829f0?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Gerösteter Blumenkohl mit Goldener Tahini & Granatapfel</h2>
-                <p>Ein orientalisches Meisterwerk mit Kontrasten in Textur und Farbe.</p>
+                <h2>Gerösteter Blumenkohl mit Goldener Tahini &amp; Granatapfel</h2>
+                <p>Ein orientalisches Meisterwerk, das durch Kontraste in Textur und Farbe besticht.</p>
             </div>
         </a>
 
         <a href="avocado-edamame-tatar-auf-schwarzbrot.html" class="recipe-banner" data-kcal="340" data-protein="10" data-fat="22" data-carb="28" data-order="4">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1522333323533-df6c9f7a8340?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1522333323533-df6c9f7a8340?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Avocado-Edamame-Tatar auf Schwarzbrot</h2>
-                <p>Modern interpretiert – vollgepackt mit Proteinen und gesunden Fetten.</p>
+                <p>Eine moderne Interpretation des Klassikers – vollgepackt mit Proteinen und gesunden Fetten.</p>
             </div>
         </a>
 
         <a href="zitronen-linguine-mit-gebratenem-gruenem-spargel.html" class="recipe-banner" data-kcal="480" data-protein="12" data-fat="18" data-carb="62" data-order="5">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Zitronen-Linguine mit gebratenem grünem Spargel</h2>
                 <p>Das pure Lebensgefühl der „Italità“ – leicht, spritzig und frühlingshaft.</p>
@@ -245,15 +323,15 @@
         </a>
 
         <a href="overnight-oats-winterwald-mit-brombeeren-und-walnuessen.html" class="recipe-banner" data-kcal="310" data-protein="9" data-fat="11" data-carb="42" data-order="6">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Overnight Oats „Winterwald“ mit Brombeeren & Walnüssen</h2>
+                <h2>Overnight Oats „Winterwald“ mit Brombeeren &amp; Walnüssen</h2>
                 <p>Ein nährstoffreiches Frühstück, das über Nacht die volle Kraft entfaltet.</p>
             </div>
         </a>
 
         <a href="beluga-linsensalat-mit-gebackenen-rote-bete-spalten.html" class="recipe-banner" data-kcal="390" data-protein="16" data-fat="14" data-carb="45" data-order="7">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Beluga-Linsensalat mit gebackenen Rote-Bete-Spalten</h2>
                 <p>Die edle „Kaviar-Linse“ trifft auf erdige Bete und fruchtigen Apfel.</p>
@@ -261,330 +339,322 @@
         </a>
 
         <a href="miso-aubergine-mit-jasminreis-und-fruehlingszwiebeln.html" class="recipe-banner" data-kcal="420" data-protein="7" data-fat="15" data-carb="65" data-order="8">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Miso-Aubergine mit Jasminreis & Frühlingszwiebeln</h2>
-                <p>Glasierte Aubergine und tiefe Umami-Noten.</p>
+                <h2>Miso-Aubergine mit Jasminreis &amp; Frühlingszwiebeln</h2>
+                <p>Glasierte Aubergine, tiefe Umami-Noten und ein ruhiger Teller wie aus einer kleinen Izakaya.</p>
             </div>
         </a>
 
         <a href="quinoa-tabbouleh-mit-minze-gurke-und-pistazien.html" class="recipe-banner" data-kcal="350" data-protein="11" data-fat="12" data-carb="48" data-order="9">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Quinoa-Tabbouleh mit Minze, Gurke & Pistazien</h2>
-                <p>Helles, kräuterfrisches Gericht mit zartem Crunch.</p>
+                <h2>Quinoa-Tabbouleh mit Minze, Gurke &amp; Pistazien</h2>
+                <p>Ein helles, kräuterfrisches Gericht mit zartem Crunch und viel Zitrusenergie.</p>
             </div>
         </a>
 
         <a href="gruenes-shakshuka-mit-spinat-erbsen-und-kraeuteroel.html" class="recipe-banner" data-kcal="320" data-protein="18" data-fat="20" data-carb="15" data-order="10">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Grünes Shakshuka mit Spinat, Erbsen & Kräuteröl</h2>
-                <p>Eine weiche, grüne Pfanne für langsame Sonntage.</p>
+                <h2>Grünes Shakshuka mit Spinat, Erbsen &amp; Kräuteröl</h2>
+                <p>Eine weiche, grüne Pfanne für späte Frühstücke und langsame Sonntage.</p>
             </div>
         </a>
 
         <a href="rote-linsen-dal-mit-kokos-limette-und-koriander.html" class="recipe-banner" data-kcal="410" data-protein="19" data-fat="14" data-carb="52" data-order="11">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1515516969-d4008cc6241a?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1515516969-d4008cc6241a?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Rote-Linsen-Dal mit Kokos, Limette & Koriander</h2>
-                <p>Cremig, golden und wohltuend.</p>
+                <h2>Rote-Linsen-Dal mit Kokos, Limette &amp; Koriander</h2>
+                <p>Cremig, golden und wohltuend – ein unkompliziertes Gericht mit viel Tiefe.</p>
             </div>
         </a>
 
         <a href="pfirsich-caprese-mit-basilikumoel-und-geroesteten-mandeln.html" class="recipe-banner" data-kcal="290" data-protein="10" data-fat="22" data-carb="12" data-order="12">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Pfirsich-Caprese mit Basilikumöl & gerösteten Mandeln</h2>
-                <p>Sommer auf einem Teller: süß, cremig und frisch.</p>
+                <h2>Pfirsich-Caprese mit Basilikumöl &amp; gerösteten Mandeln</h2>
+                <p>Sommer auf einem Teller: süß, cremig, frisch und in fünfzehn Minuten serviert.</p>
             </div>
         </a>
 
         <a href="suesskartoffel-gnocchi-mit-salbei-und-haselnuessen.html" class="recipe-banner" data-kcal="440" data-protein="8" data-fat="18" data-carb="60" data-order="13">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Süßkartoffel-Gnocchi mit Salbei & Haselnüssen</h2>
-                <p>Weiche Gnocchi und nussige Röstaromen.</p>
+                <h2>Süßkartoffel-Gnocchi mit Salbei &amp; Haselnüssen</h2>
+                <p>Weiche Gnocchi, nussige Röstaromen und Salbei als kleiner eleganter Akzent.</p>
             </div>
         </a>
 
         <a href="fenchel-orangen-salat-mit-oliven-und-mandelcrunch.html" class="recipe-banner" data-kcal="260" data-protein="5" data-fat="16" data-carb="24" data-order="14">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Fenchel-Orangen-Salat mit Oliven & Mandelcrunch</h2>
-                <p>Mediterrane Frische und salzige Tiefe.</p>
+                <h2>Fenchel-Orangen-Salat mit Oliven &amp; Mandelcrunch</h2>
+                <p>Ein klarer, mediterraner Salat mit bittersüßer Frische und salziger Tiefe.</p>
             </div>
         </a>
 
         <a href="waldpilz-risotto-mit-thymian-und-zitronenzeste.html" class="recipe-banner" data-kcal="490" data-protein="11" data-fat="16" data-carb="72" data-order="15">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Waldpilz-Risotto mit Thymian & Zitronenzeste</h2>
-                <p>Cremiges Risotto mit erdiger Tiefe.</p>
+                <h2>Waldpilz-Risotto mit Thymian &amp; Zitronenzeste</h2>
+                <p>Cremiges Risotto mit erdiger Tiefe, frischem Thymian und einem hellen Zitronenfinish.</p>
             </div>
         </a>
 
         <a href="kichererbsen-pancakes-mit-kraeuterjoghurt-und-gurkensalat.html" class="recipe-banner" data-kcal="370" data-protein="17" data-fat="12" data-carb="44" data-order="16">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Kichererbsen-Pancakes mit Kräuterjoghurt & Gurkensalat</h2>
-                <p>Herzhafte kleine Pancakes, außen goldig, innen weich.</p>
+                <h2>Kichererbsen-Pancakes mit Kräuterjoghurt &amp; Gurkensalat</h2>
+                <p>Herzhafte kleine Pancakes, außen goldig, innen weich, dazu ein kühler Kräuterkontrast.</p>
             </div>
         </a>
 
         <a href="apfel-zimt-crumble-mit-hafer-und-vanillejoghurt.html" class="recipe-banner" data-kcal="410" data-protein="7" data-fat="15" data-carb="58" data-order="17">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505253213348-45854f8dff30?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505253213348-45854f8dff30?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Apfel-Zimt-Crumble mit Hafer & Vanillejoghurt</h2>
-                <p>Ein warmes Dessert, das nach Zuhause schmeckt.</p>
+                <h2>Apfel-Zimt-Crumble mit Hafer &amp; Vanillejoghurt</h2>
+                <p>Ein warmes Dessert, das nach Zuhause schmeckt, aber leicht genug für jeden Tag bleibt.</p>
             </div>
         </a>
 
         <a href="buchweizen-bowl-mit-ofenkarotten-und-zitronen-dill-joghurt.html" class="recipe-banner" data-kcal="390" data-protein="11" data-fat="14" data-carb="55" data-order="18">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Buchweizen-Bowl mit Ofenkarotten & Zitronen-Dill-Joghurt</h2>
-                <p>Nussige Bowl mit warmen Karotten und kühlem Joghurt.</p>
+                <h2>Buchweizen-Bowl mit Ofenkarotten &amp; Zitronen-Dill-Joghurt</h2>
+                <p>Eine nussige Bowl mit warmen Karotten, kühlem Joghurt und feiner Kräuterfrische.</p>
             </div>
         </a>
 
         <a href="geroestete-paprika-suppe-mit-weissen-bohnen-und-basilikum.html" class="recipe-banner" data-kcal="240" data-protein="12" data-fat="6" data-carb="34" data-order="19">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Geröstete Paprika-Suppe mit weißen Bohnen & Basilikum</h2>
-                <p>Samtig, farbintensiv und angenehm sättigend.</p>
+                <h2>Geröstete Paprika-Suppe mit weißen Bohnen &amp; Basilikum</h2>
+                <p>Samtig, farbintensiv und dank weißer Bohnen angenehm sättigend.</p>
             </div>
         </a>
 
         <a href="kraeuter-frittata-mit-zucchini-und-ziegenkaese.html" class="recipe-banner" data-kcal="310" data-protein="21" data-fat="22" data-carb="6" data-order="20">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Kräuter-Frittata mit Zucchini & Ziegenkäse</h2>
-                <p>Ein leises, elegantes Ofengericht für jeden Tag.</p>
+                <h2>Kräuter-Frittata mit Zucchini &amp; Ziegenkäse</h2>
+                <p>Ein leises, elegantes Ofengericht für Brunch, Lunchbox oder ein leichtes Abendessen.</p>
             </div>
         </a>
 
         <a href="sesam-tofu-mit-brokkoli-und-ingwerreis.html" class="recipe-banner" data-kcal="430" data-protein="22" data-fat="18" data-carb="44" data-order="21">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Sesam-Tofu mit Brokkoli & Ingwerreis</h2>
-                <p>Knuspriger Tofu und warmer Ingwerduft.</p>
+                <h2>Sesam-Tofu mit Brokkoli &amp; Ingwerreis</h2>
+                <p>Knuspriger Tofu, grüner Brokkoli und warmer Ingwerduft in einer klaren Bowl.</p>
             </div>
         </a>
 
         <a href="rote-bete-carpaccio-mit-birne-und-walnuss.html" class="recipe-banner" data-kcal="220" data-protein="6" data-fat="14" data-carb="18" data-order="22">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Rote-Bete-Carpaccio mit Birne & Walnuss</h2>
-                <p>Fein geschnittene Bete und nussiger Crunch.</p>
+                <h2>Rote-Bete-Carpaccio mit Birne &amp; Walnuss</h2>
+                <p>Fein geschnittene Bete, süße Birne und nussiger Crunch als eleganter Auftakt.</p>
             </div>
         </a>
 
         <a href="spinat-erbsen-pesto-mit-vollkornpasta.html" class="recipe-banner" data-kcal="460" data-protein="14" data-fat="18" data-carb="58" data-order="23">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Spinat-Erbsen-Pesto mit Vollkornpasta</h2>
-                <p>Ein grünes, cremiges Pesto mit zarter Süße.</p>
+                <p>Ein grünes, cremiges Pesto mit zarter Süße und viel Frische.</p>
             </div>
         </a>
 
         <a href="ofenkurbis-mit-feta-honig-und-thymian.html" class="recipe-banner" data-kcal="330" data-protein="9" data-fat="20" data-carb="28" data-order="24">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Ofenkürbis mit Feta, Honig & Thymian</h2>
-                <p>Herbstgericht mit goldenen Rändern.</p>
+                <h2>Ofenkürbis mit Feta, Honig &amp; Thymian</h2>
+                <p>Süß, salzig und aromatisch: ein Herbstgericht mit goldenen Rändern.</p>
             </div>
         </a>
 
         <a href="gurken-melonen-salat-mit-minze-und-limette.html" class="recipe-banner" data-kcal="150" data-protein="3" data-fat="1" data-carb="32" data-order="25">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Gurken-Melonen-Salat mit Minze & Limette</h2>
-                <p>Kühl, klar und leicht: wie ein tiefer Atemzug.</p>
+                <h2>Gurken-Melonen-Salat mit Minze &amp; Limette</h2>
+                <p>Kühl, klar und leicht: ein Sommersalat wie ein tiefer Atemzug.</p>
             </div>
         </a>
 
         <a href="tomaten-galette-mit-ricotta-und-oregano.html" class="recipe-banner" data-kcal="470" data-protein="12" data-fat="28" data-carb="42" data-order="26">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Tomaten-Galette mit Ricotta & Oregano</h2>
-                <p>Rustikal, saftig und duftend.</p>
+                <h2>Tomaten-Galette mit Ricotta &amp; Oregano</h2>
+                <p>Rustikal, saftig und duftend: reife Tomaten in knusprigem Teig.</p>
             </div>
         </a>
 
         <a href="linsen-bolognese-mit-geroesteten-pilzen.html" class="recipe-banner" data-kcal="440" data-protein="21" data-fat="12" data-carb="55" data-order="27">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Linsen-Bolognese mit gerösteten Pilzen</h2>
-                <p>Pflanzliche Sauce mit viel Röstaroma.</p>
+                <p>Eine tiefe, pflanzliche Sauce mit viel Röstaroma und gemütlicher Wärme.</p>
             </div>
         </a>
 
         <a href="mandel-couscous-mit-aprikosen-und-harissa-moehren.html" class="recipe-banner" data-kcal="450" data-protein="11" data-fat="16" data-carb="64" data-order="28">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Mandel-Couscous mit Aprikosen & Harissa-Möhren</h2>
-                <p>Süß, scharf, nussig und wunderbar duftend.</p>
+                <h2>Mandel-Couscous mit Aprikosen &amp; Harissa-Möhren</h2>
+                <p>Nordafrikanisch inspiriert: süß, scharf, nussig und wunderbar duftend.</p>
             </div>
         </a>
 
         <a href="zucchini-roellchen-mit-kraeuter-cashewcreme.html" class="recipe-banner" data-kcal="290" data-protein="11" data-fat="22" data-carb="12" data-order="29">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Zucchini-Röllchen mit Kräuter-Cashewcreme</h2>
-                <p>Feine Zucchini-Bänder und cremige Füllung.</p>
+                <p>Feine Zucchini-Bänder, cremige Füllung und viel Kräuterduft.</p>
             </div>
         </a>
 
         <a href="karotten-ingwer-salat-mit-sesam-und-koriander.html" class="recipe-banner" data-kcal="190" data-protein="4" data-fat="11" data-carb="18" data-order="30">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Karotten-Ingwer-Salat mit Sesam & Koriander</h2>
-                <p>Knackig mit einem warmen Ingwerkick.</p>
+                <h2>Karotten-Ingwer-Salat mit Sesam &amp; Koriander</h2>
+                <p>Knackig, hell und aromatisch mit einem warmen Ingwerkick.</p>
             </div>
         </a>
 
         <a href="polenta-schnitten-mit-pilzragout.html" class="recipe-banner" data-kcal="410" data-protein="10" data-fat="16" data-carb="52" data-order="31">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Polenta-Schnitten mit Pilzragout</h2>
-                <p>Goldene Polenta trifft auf ein tiefes Pilzragout.</p>
+                <p>Goldene Polenta trifft auf ein tiefes, würziges Pilzragout.</p>
             </div>
         </a>
 
         <a href="schwarze-bohnen-tacos-mit-mango-salsa.html" class="recipe-banner" data-kcal="380" data-protein="14" data-fat="10" data-carb="58" data-order="32">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Schwarze-Bohnen-Tacos mit Mango-Salsa</h2>
-                <p>Cremige Bohnen und süße Mango.</p>
+                <p>Cremige Bohnen, süße Mango und Limette in kleinen, lebendigen Tacos.</p>
             </div>
         </a>
 
         <a href="rucola-feigen-salat-mit-ziegenkaese-und-balsamico.html" class="recipe-banner" data-kcal="320" data-protein="9" data-fat="22" data-carb="20" data-order="33">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Rucola-Feigen-Salat mit Ziegenkäse & Balsamico</h2>
-                <p>Süße Feigen und cremiger Käse in Balance.</p>
+                <h2>Rucola-Feigen-Salat mit Ziegenkäse &amp; Balsamico</h2>
+                <p>Pfeffriger Rucola, süße Feigen und cremiger Käse in perfekter Balance.</p>
             </div>
         </a>
 
         <a href="geroesteter-brokkoli-mit-mandelmus-zitronen-sauce.html" class="recipe-banner" data-kcal="270" data-protein="11" data-fat="18" data-carb="14" data-order="34">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Gerösteter Brokkoli mit Mandelmus-Zitronen-Sauce</h2>
-                <p>Knusprige Ränder und helle, cremige Sauce.</p>
+                <p>Knusprige Brokkoliränder und eine helle, cremige Sauce mit Zitronenzug.</p>
             </div>
         </a>
 
         <a href="kokos-reis-pudding-mit-passionsfrucht.html" class="recipe-banner" data-kcal="350" data-protein="5" data-fat="14" data-carb="51" data-order="35">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Kokos-Reis-Pudding mit Passionsfrucht</h2>
-                <p>Cremig, tropisch und sanft.</p>
+                <p>Cremig, tropisch und sanft: ein Dessert mit klarer Säure und weicher Süße.</p>
             </div>
         </a>
 
         <a href="gebratene-gnocchi-mit-erbsen-minze-und-zitrone.html" class="recipe-banner" data-kcal="440" data-protein="10" data-fat="14" data-carb="65" data-order="36">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Gebratene Gnocchi mit Erbsen, Minze & Zitrone</h2>
-                <p>Goldene Gnocchi mit frühlingshafter Frische.</p>
+                <h2>Gebratene Gnocchi mit Erbsen, Minze &amp; Zitrone</h2>
+                <p>Goldene Gnocchi mit frühlingshafter Frische und zarter Süße.</p>
             </div>
         </a>
 
         <a href="hirse-porridge-mit-birne-kardamom-und-mandeln.html" class="recipe-banner" data-kcal="360" data-protein="9" data-fat="12" data-carb="54" data-order="37">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Hirse-Porridge mit Birne, Kardamom & Mandeln</h2>
-                <p>Warmes Frühstück mit feinem Gewürzduft.</p>
+                <h2>Hirse-Porridge mit Birne, Kardamom &amp; Mandeln</h2>
+                <p>Ein warmes Frühstück mit feinem Gewürzduft und nussiger Ruhe.</p>
             </div>
         </a>
 
         <a href="sommerrollen-mit-erdnuss-limetten-dip.html" class="recipe-banner" data-kcal="290" data-protein="9" data-fat="14" data-carb="32" data-order="38">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Sommerrollen mit Erdnuss-Limetten-Dip</h2>
-                <p>Knackige Rollen und frische Kräuter.</p>
+                <p>Knackige Rollen, frische Kräuter und ein cremiger Dip mit Limettenfrische.</p>
             </div>
         </a>
 
         <a href="balsamico-erdbeeren-auf-cremiger-burrata.html" class="recipe-banner" data-kcal="340" data-protein="12" data-fat="26" data-carb="14" data-order="39">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Balsamico-Erdbeeren auf cremiger Burrata</h2>
-                <p>Süße Erdbeeren und milde Burrata.</p>
+                <p>Süße Erdbeeren, milde Burrata und ein dunkler Balsamico-Akzent.</p>
             </div>
         </a>
 
         <a href="sobanudeln-mit-gurke-edamame-und-chili-sesam.html" class="recipe-banner" data-kcal="410" data-protein="16" data-fat="14" data-carb="54" data-order="40">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Sobanudeln mit Gurke, Edamame & Chili-Sesam</h2>
-                <p>Kalte Nudeln mit grüner Frische.</p>
+                <h2>Sobanudeln mit Gurke, Edamame &amp; Chili-Sesam</h2>
+                <p>Kalte Nudeln mit grüner Frische, sanfter Schärfe und nussigem Sesam.</p>
             </div>
         </a>
 
         <a href="mediterrane-ofenkartoffeln-mit-oliven-und-rosmarin.html" class="recipe-banner" data-kcal="330" data-protein="5" data-fat="14" data-carb="45" data-order="41">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Mediterrane Ofenkartoffeln mit Oliven & Rosmarin</h2>
-                <p>Knusprige Kartoffeln und salzige Oliven.</p>
+                <h2>Mediterrane Ofenkartoffeln mit Oliven &amp; Rosmarin</h2>
+                <p>Knusprige Kartoffeln, salzige Oliven und Rosmarin wie ein kurzer Urlaub.</p>
             </div>
         </a>
 
         <a href="cremige-tomaten-orzo-mit-spinat-und-basilikum.html" class="recipe-banner" data-kcal="470" data-protein="15" data-fat="18" data-carb="62" data-order="42">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Cremige Tomaten-Orzo mit Spinat & Basilikum</h2>
-                <p>One-Pot-Gericht mit samtiger Sauce.</p>
+                <h2>Cremige Tomaten-Orzo mit Spinat &amp; Basilikum</h2>
+                <p>Ein One-Pot-Gericht mit samtiger Sauce, kleinen Nudeln und viel Basilikumduft.</p>
             </div>
         </a>
 
         <a href="blutorangen-salat-mit-avocado-und-pistazien.html" class="recipe-banner" data-kcal="280" data-protein="6" data-fat="22" data-carb="14" data-order="43">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Blutorangen-Salat mit Avocado & Pistazien</h2>
-                <p>Zitrusfrische und cremige Avocado.</p>
+                <h2>Blutorangen-Salat mit Avocado &amp; Pistazien</h2>
+                <p>Leuchtende Zitrusfrische, cremige Avocado und grüner Pistaziencrunch.</p>
             </div>
         </a>
 
         <a href="kuerbis-kichererbsen-curry-mit-spinat.html" class="recipe-banner" data-kcal="410" data-protein="16" data-fat="12" data-carb="58" data-order="44">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Kürbis-Kichererbsen-Curry mit Spinat</h2>
-                <p>Goldiges Curry mit weichem Kürbis.</p>
+                <p>Ein goldiges Curry mit weichem Kürbis, cremiger Sauce und grüner Frische.</p>
             </div>
         </a>
 
         <a href="geroestete-trauben-mit-ricotta-und-thymianbrot.html" class="recipe-banner" data-kcal="360" data-protein="11" data-fat="20" data-carb="34" data-order="45">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Geröstete Trauben mit Ricotta & Thymianbrot</h2>
-                <p>Süße, warme Trauben auf cremigem Ricotta.</p>
+                <h2>Geröstete Trauben mit Ricotta &amp; Thymianbrot</h2>
+                <p>Süße, warme Trauben auf cremigem Ricotta mit knusprigem Brot.</p>
             </div>
         </a>
 
         <a href="gruene-gemuesepfanne-mit-halloumi-und-zitronenoel.html" class="recipe-banner" data-kcal="390" data-protein="21" data-fat="28" data-carb="12" data-order="46">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
-                <h2>Grüne Gemüsepfanne mit Halloumi & Zitronenöl</h2>
-                <p>Knackiges Grün und salziger Halloumi.</p>
+                <h2>Grüne Gemüsepfanne mit Halloumi &amp; Zitronenöl</h2>
+                <p>Knackiges Grün, salziger Halloumi und ein helles Zitronenfinish.</p>
             </div>
         </a>
 
         <a href="hafer-bananen-pancakes-mit-beerenkompott.html" class="recipe-banner" data-kcal="340" data-protein="8" data-fat="6" data-carb="62" data-order="47">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
             <div class="banner-content">
                 <h2>Hafer-Bananen-Pancakes mit Beerenkompott</h2>
-                <p>Sanft süße Pancakes mit warmen Beeren.</p>
-            </div>
-        </a>
-
-        <a href="tempeh-protein-bowl.html" class="recipe-banner" data-kcal="580" data-protein="48" data-fat="24" data-carb="42" data-order="48">
-            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="banner-content">
-                <h2>Rauchige Tempeh-Protein-Bowl</h2>
-                <p>Maximale Pflanzenkraft: Knuspriger Tempeh trifft auf Quinoa und ein cremiges Erdnuss-Finish. 48g Protein pur.</p>
+                <p>Sanft süße Pancakes mit warmen Beeren und wenig Aufwand.</p>
             </div>
         </a>
     </main>
@@ -597,8 +667,31 @@
     </footer>
 
     <script>
+        // 1. Darkmode-Logik
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Prüfen, ob eine Einstellung gespeichert ist
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Einstellung speichern
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // 2. Filter-Logik
         const sortSelect = document.getElementById('recipe-sort');
         const recipeList = document.getElementById('recipe-list');
+        // Wir nehmen alle <a> Elemente mit der Klasse 'recipe-banner' im Container
         const banners = Array.from(recipeList.getElementsByClassName('recipe-banner'));
 
         sortSelect.addEventListener('change', function() {
@@ -617,12 +710,11 @@
                 });
             }
 
-            // Grid leeren und neu sortiert einfügen
-            recipeList.innerHTML = '';
+            // Wir leeren nicht den ganzen Container (sonst verschwindet die h2-Überschrift)
+            // sondern sortieren nur die Kästen ans Ende
             banners.forEach(banner => recipeList.appendChild(banner));
         });
     </script>
-
     <script src="theme.js"></script>
 </body>
 </html>

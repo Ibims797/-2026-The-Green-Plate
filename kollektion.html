@@ -39,15 +39,19 @@
             font-family: var(--font-sans);
         }
 
-        /* HEADER (KONSISTENT) */
+        /* --- HEADER --- */
         header {
-            padding: 80px 20px 40px 20px;
+            background-color: var(--bg-color);
+            padding: 60px 0 30px 0;
             text-align: center;
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+            transition: background-color var(--transition), border-color var(--transition);
         }
 
         header h1 {
             font-family: var(--font-serif);
-            font-size: 3rem;
+            font-size: 3.5rem;
             letter-spacing: 5px;
             margin: 0 0 20px 0;
             text-transform: uppercase;
@@ -57,6 +61,7 @@
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
             display: flex;
             justify-content: center;
             gap: 40px;
@@ -64,10 +69,16 @@
 
         nav a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-color);
             font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
+            transition: color var(--transition);
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
         }
 
         /* KOLLEKTIONEN GRID */
