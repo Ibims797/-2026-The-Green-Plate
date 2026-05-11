@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezept | Rauchige Tempeh-Protein-Bowl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('greenPlateTheme') || localStorage.getItem('theme');
+                if (theme !== 'dark' && theme !== 'light') {
+                    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.style.colorScheme = theme;
+            } catch (error) {
+                document.documentElement.dataset.theme = 'light';
+                document.documentElement.style.colorScheme = 'light';
+            }
+        })();
+    </script>
+    <style>
+        :root {
+            --bg-color: #f9f7f2;
+            --text-dark: #1a1a1a;
+            --accent-gold: #c5a059;
+            --border-light: #e0dcd0;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-dark: #f9f7f2;
+            --border-light: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            margin: 0;
+            line-height: 1.6;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* HEADER */
+        header {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* THEME TOGGLE */
+        .theme-toggle {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-dark);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle svg { fill: currentColor; width: 20px; height: 20px; }
+        body.dark-mode .moon-icon, body:not(.dark-mode) .sun-icon { display: none; }
+
+        /* CONTAINER */
+        .container {
+            max-width: 980px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .recipe-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .recipe-title h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .recipe-title p {
+            max-width: 680px;
+            margin: 18px auto 0 auto;
+            font-style: italic;
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* GRID */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 60px;
+        }
+
+        h3 {
+            font-family: var(--font-serif);
+            border-bottom: 1px solid var(--accent-gold);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        ul, ol { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .back-nav a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .recipe-grid { grid-template-columns: 1fr; gap: 30px; }
+            .recipe-image { height: 300px; }
+            .theme-toggle { right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Modus wechseln">
+            <svg class="moon-icon" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 20 20"><path d="M10 15a5 5 0 100-10 5 5 0 000 10zM10 0a1 1 0 011 1v1a1 1 0 11-2 0V1a1 1 0 011-1zm0 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm8-8a1 1 0 011 1h-1a1 1 0 110-2h1a1 1 0 011 1zM2 9a1 1 0 011 1H2a1 1 0 110-2h1a1 1 0 011 1zm14.071-6.071a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM5.343 13.243a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zm10.142 0a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM4.636 2.929a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414z"/></svg>
+        </button>
+        <h1>The Green Plate</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rezepte.html">Rezepte</a></li>
+                <li><a href="kollektion.html">Kollektionen</a></li>
+                <li><a href="überuns.html">Über uns</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="recipe-title">
+            <h2>Rauchige Tempeh-Protein-Bowl</h2>
+            <p>Die ultimative Kraftquelle: Nussiger Tempeh trifft auf Quinoa und ein cremiges Erdnuss-Finish.</p>
+        </div>
+
+        <img class="recipe-image" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=80" alt="Tempeh Protein Bowl">
+
+        <div class="recipe-grid">
+            <section>
+                <h3>Zutaten</h3>
+                <ul>
+                    <li>200g Tempeh (natur)</li>
+                    <li>80g Quinoa</li>
+                    <li>150g schwarze Bohnen</li>
+                    <li>1 EL Erdnussmus</li>
+                    <li>2 EL Sojasauce</li>
+                    <li>1 TL geräuchertes Paprikapulver</li>
+                    <li>1/2 Avocado</li>
+                    <li>Limette &amp; Babyspinat</li>
+                </ul>
+
+                <h3>Nährwerte</h3>
+                <table>
+                    <tr><td>Kalorien</td><td>ca. 580 kcal</td></tr>
+                    <tr><td>Fett</td><td>24 g</td></tr>
+                    <tr><td>Kohlenhydrate</td><td>42 g</td></tr>
+                    <tr><td>Eiweiß</td><td>48 g</td></tr>
+                </table>
+            </section>
+
+            <section>
+                <h3>Zubereitung</h3>
+                <ol>
+                    <li>Quinoa nach Packungsanleitung in Salzwasser kochen und abtropfen lassen.</li>
+                    <li>Tempeh in Streifen schneiden und mit Sojasauce sowie Paprikapulver marinieren.</li>
+                    <li>Streifen in einer Pfanne mit etwas Öl von beiden Seiten knusprig anbraten.</li>
+                    <li>Erdnussmus mit etwas warmem Wasser und Limettensaft zu einer Sauce rühren.</li>
+                    <li>Schwarze Bohnen kurz in der Pfanne oder im Quinoa-Topf erwärmen.</li>
+                    <li>Spinat, Quinoa und Bohnen in einer Schüssel mit Tempeh anrichten.</li>
+                    <li>Mit Avocado-Spalten garnieren und das Dressing darübergeben.</li>
+                </ol>
+            </section>
+        </div>
+
+        <div class="back-nav">
+            <a href="rezepte.html">← Zurück zur Übersicht</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 THE GREEN PLATE — KULINARISCHE ÄSTHETIK</p>
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') body.classList.add('dark-mode');
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
