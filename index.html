@@ -6,35 +6,47 @@
     <title>The Green Plate | Kulinarische Ästhetik & Genuss</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* CSS VARIABLEN FÜR DARK ELEGANCE DESIGN */
+        /* CSS VARIABLEN */
         :root {
-            --bg-color: #1a1a1a;      /* Tiefes Anthrazit/Schwarz */
-            --text-color: #f9f7f2;    /* Cremeweiße Schrift */
-            --accent-gold: #c5a059;   /* Dezentes Gold */
-            --border-light: #333333;  /* Dunkle Trennlinien */
+            /* Default: Dark Mode */
+            --bg-color: #1a1a1a;
+            --text-color: #f9f7f2;
+            --accent-gold: #c5a059;
+            --border-light: #333333;
             --white: #ffffff;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* LIGHT MODE VARIABLEN */
+        body.light-mode {
+            --bg-color: #f9f7f2;
+            --text-color: #1a1a1a;
+            --border-light: #e0dcd0;
         }
 
         /* GLOBALE STYLES */
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-color); /* Dunkler Hintergrund */
-            color: var(--text-color);           /* Weiße/Beige Schrift */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: var(--font-sans);
             line-height: 1.8;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
+            transition: background-color var(--transition), color var(--transition);
         }
 
-        /* --- HEADER: DARK & CLEAN --- */
+        /* --- HEADER --- */
         header {
             background-color: var(--bg-color);
             padding: 60px 0 30px 0;
             text-align: center;
             border-bottom: 1px solid var(--border-light);
+            position: relative;
+            transition: background-color var(--transition), border-color var(--transition);
         }
 
         header h1 {
@@ -44,7 +56,6 @@
             margin: 0 0 20px 0;
             text-transform: uppercase;
             font-weight: 700;
-            color: var(--text-color); /* Weiße Schrift */
         }
 
         nav ul {
@@ -58,16 +69,47 @@
 
         nav a {
             text-decoration: none;
-            color: var(--text-color); /* Weiße Schrift */
+            color: var(--text-color);
             font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: color 0.3s;
+            transition: color var(--transition);
             font-weight: 400;
         }
 
         nav a:hover {
             color: var(--accent-gold);
+        }
+
+        /* --- MODE TOGGLE ICON --- */
+        .theme-toggle {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition);
+        }
+
+        .theme-toggle svg {
+            fill: currentColor;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Verstecke das jeweils andere Icon */
+        body.light-mode .sun-icon,
+        body:not(.light-mode) .moon-icon {
+            display: none;
         }
 
         /* --- HERO SECTION --- */
@@ -86,14 +128,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.5); /* Bild etwas dunkler, damit die weiße Schrift knallt */
+            filter: brightness(0.5);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
             text-align: center;
-            color: var(--text-color); /* Weiße Schrift */
+            color: #f9f7f2; /* Text im Hero bleibt hell für Kontrast */
             max-width: 800px;
             padding: 0 20px;
         }
@@ -111,12 +153,12 @@
             margin-bottom: 40px;
         }
 
-        /* CTA BUTTON: GOLDER KONTRAST */
+        /* --- BUTTONS --- */
         .cta-button {
             display: inline-block;
             padding: 20px 50px;
-            background-color: var(--text-color); /* Heller Button */
-            color: var(--bg-color);             /* Dunkle Schrift */
+            background-color: var(--white);
+            color: #1a1a1a;
             text-decoration: none;
             font-size: 0.9rem;
             letter-spacing: 2px;
@@ -149,12 +191,11 @@
             font-family: var(--font-serif);
             font-size: 2.5rem;
             margin-bottom: 30px;
-            color: var(--text-color);
         }
 
         .intro-text p {
             font-size: 1.1rem;
-            color: #cccccc; /* Etwas weicheres Weiß für Fließtext */
+            opacity: 0.8;
             margin-bottom: 20px;
         }
 
@@ -181,21 +222,21 @@
             color: var(--accent-gold);
         }
 
-        .value-item p {
-            color: #cccccc;
-        }
-
-        /* INFO BOX: Dunkel mit goldenem Rand */
+        /* INFO BOX */
         .info-box {
             margin: 80px auto;
             padding: 30px;
             border: 1px solid var(--accent-gold);
             border-radius: 15px;
-            background-color: #252525;
+            background-color: rgba(255,255,255,0.05);
             font-size: 0.85rem;
-            color: #aaaaaa;
+            opacity: 0.7;
             text-align: left;
             max-width: 700px;
+        }
+
+        body.light-mode .info-box {
+            background-color: rgba(0,0,0,0.02);
         }
 
         .info-box strong {
@@ -210,7 +251,6 @@
         footer {
             text-align: center;
             padding: 80px 20px;
-            background-color: var(--bg-color);
             border-top: 1px solid var(--border-light);
         }
 
@@ -219,22 +259,35 @@
         }
 
         .footer-nav a {
-            color: #888888;
+            color: var(--text-color);
+            opacity: 0.5;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 0.7rem;
             letter-spacing: 1px;
-            transition: color 0.3s;
+            transition: opacity 0.3s;
         }
 
         .footer-nav a:hover {
-            color: var(--accent-gold);
+            opacity: 1;
+        }
+
+        /* Responsive Anpassung */
+        @media (max-width: 768px) {
+            .intro-section { grid-template-columns: 1fr; gap: 40px; }
+            header h1 { font-size: 2.5rem; }
+            .theme-toggle { right: 20px; top: 30px; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema umschalten">
+            <svg class="sun-icon" viewBox="0 0 20 20"><path d="M10 15a5 5 0 100-10 5 5 0 000 10zM10 0a1 1 0 011 1v1a1 1 0 11-2 0V1a1 1 0 011-1zm0 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm8-8a1 1 0 011 1h-1a1 1 0 110-2h1a1 1 0 011 1zM2 9a1 1 0 011 1H2a1 1 0 110-2h1a1 1 0 011 1zm14.071-6.071a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM5.343 13.243a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zm10.142 0a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM4.636 2.929a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414z"/></svg>
+            <svg class="moon-icon" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+
         <h1>The Green Plate</h1>
         <nav>
             <ul>
@@ -260,15 +313,8 @@
             <section class="intro-section">
                 <div class="intro-text">
                     <h2>Philosophie der Einfachheit</h2>
-                    <p>
-                        In einer Welt, die niemals stillsteht, laden wir Sie ein, einen Moment innezuhalten. 
-                        The Green Plate ist nicht nur eine Rezeptsammlung – es ist eine Einladung, 
-                        die Vorbereitung von Lebensmitteln als tägliches Ritual der Achtsamkeit zu begreifen.
-                    </p>
-                    <p>
-                        Unsere Rezepte zeichnen sich durch drei Säulen aus: Saisonale Frische, visuelle 
-                        Klarheit und die Rückbesinnung auf hochwertige Grundzutaten.
-                    </p>
+                    <p>In einer Welt, die niemals stillsteht, laden wir Sie ein, einen Moment innezuhalten. The Green Plate ist nicht nur eine Rezeptsammlung – es ist eine Einladung, die Vorbereitung von Lebensmitteln als tägliches Ritual der Achtsamkeit zu begreifen.</p>
+                    <p>Unsere Rezepte zeichnen sich durch drei Säulen aus: Saisonale Frische, visuelle Klarheit und die Rückbesinnung auf hochwertige Grundzutaten.</p>
                 </div>
                 <img src="https://images.unsplash.com/photo-1547517023-7ca0c162f816?auto=format&fit=crop&w=800&q=80" alt="Küchenvorbereitung" class="intro-img">
             </section>
@@ -302,5 +348,26 @@
         </nav>
     </footer>
 
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Prüfen, ob eine Einstellung gespeichert ist
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            
+            // Einstellung speichern
+            if (body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
