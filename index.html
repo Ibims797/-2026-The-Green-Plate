@@ -5,25 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Green Plate | Kulinarische Ästhetik & Genuss</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('greenPlateTheme') || localStorage.getItem('theme');
+                if (theme !== 'dark' && theme !== 'light') {
+                    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.style.colorScheme = theme;
+            } catch (error) {
+                document.documentElement.dataset.theme = 'light';
+                document.documentElement.style.colorScheme = 'light';
+            }
+        })();
+    </script>
     <style>
         /* CSS VARIABLEN */
         :root {
-            /* Default: Dark Mode */
-            --bg-color: #1a1a1a;
-            --text-color: #f9f7f2;
+            /* Standard: Light Mode (Beige) */
+            --bg-color: #f9f7f2;
+            --text-color: #1a1a1a;
             --accent-gold: #c5a059;
-            --border-light: #333333;
+            --border-light: #e0dcd0;
             --white: #ffffff;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* LIGHT MODE VARIABLEN */
-        body.light-mode {
-            --bg-color: #f9f7f2;
-            --text-color: #1a1a1a;
-            --border-light: #e0dcd0;
+        /* DARK MODE VARIABLEN */
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f9f7f2;
+            --border-light: #333333;
         }
 
         /* GLOBALE STYLES */
@@ -85,8 +100,7 @@
         .theme-toggle {
             position: absolute;
             right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 32px;
             background: none;
             border: none;
             cursor: pointer;
@@ -100,15 +114,19 @@
             transition: color var(--transition);
         }
 
+        .theme-toggle:hover {
+            color: var(--accent-gold);
+        }
+
         .theme-toggle svg {
             fill: currentColor;
             width: 20px;
             height: 20px;
         }
 
-        /* Verstecke das jeweils andere Icon */
-        body.light-mode .sun-icon,
-        body:not(.light-mode) .moon-icon {
+        /* Logik: Zeige Mond im Light Mode, Sonne im Dark Mode */
+        body.dark-mode .moon-icon,
+        body:not(.dark-mode) .sun-icon {
             display: none;
         }
 
@@ -128,14 +146,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.5);
+            filter: brightness(0.6);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
             text-align: center;
-            color: #f9f7f2; /* Text im Hero bleibt hell für Kontrast */
+            color: #f9f7f2; /* Text im Hero bleibt immer hell für Kontrast auf dunklem Bild */
             max-width: 800px;
             padding: 0 20px;
         }
@@ -157,8 +175,8 @@
         .cta-button {
             display: inline-block;
             padding: 20px 50px;
-            background-color: var(--white);
-            color: #1a1a1a;
+            background-color: var(--text-color); /* Dynamisch: Schwarz in Light, Beige in Dark */
+            color: var(--bg-color); /* Dynamisch: Beige in Light, Schwarz in Dark */
             text-decoration: none;
             font-size: 0.9rem;
             letter-spacing: 2px;
@@ -204,6 +222,10 @@
             height: 500px;
             object-fit: cover;
             border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .intro-img {
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
@@ -222,21 +244,87 @@
             color: var(--accent-gold);
         }
 
+        .featured-recipes {
+            margin-top: 100px;
+        }
+
+        .featured-recipes h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .featured-card {
+            min-height: 360px;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #f9f7f2;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .featured-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.68));
+        }
+
+        .featured-card-content {
+            position: relative;
+            z-index: 1;
+            padding: 26px;
+        }
+
+        .featured-card span {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .featured-card h3 {
+            margin: 0 0 10px 0;
+            font-family: var(--font-serif);
+            font-size: 1.55rem;
+            color: #f9f7f2;
+        }
+
+        .featured-card p {
+            margin: 0;
+            color: #f9f7f2;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
         /* INFO BOX */
         .info-box {
             margin: 80px auto;
             padding: 30px;
             border: 1px solid var(--accent-gold);
             border-radius: 15px;
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(0,0,0,0.02);
             font-size: 0.85rem;
-            opacity: 0.7;
+            opacity: 0.9;
             text-align: left;
             max-width: 700px;
         }
 
-        body.light-mode .info-box {
-            background-color: rgba(0,0,0,0.02);
+        body.dark-mode .info-box {
+            background-color: rgba(255,255,255,0.05);
         }
 
         .info-box strong {
@@ -275,17 +363,20 @@
         /* Responsive Anpassung */
         @media (max-width: 768px) {
             .intro-section { grid-template-columns: 1fr; gap: 40px; }
+            .values-grid,
+            .featured-grid { grid-template-columns: 1fr; }
             header h1 { font-size: 2.5rem; }
             .theme-toggle { right: 20px; top: 30px; }
         }
     </style>
+    <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
     <header>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema umschalten">
-            <svg class="sun-icon" viewBox="0 0 20 20"><path d="M10 15a5 5 0 100-10 5 5 0 000 10zM10 0a1 1 0 011 1v1a1 1 0 11-2 0V1a1 1 0 011-1zm0 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm8-8a1 1 0 011 1h-1a1 1 0 110-2h1a1 1 0 011 1zM2 9a1 1 0 011 1H2a1 1 0 110-2h1a1 1 0 011 1zm14.071-6.071a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM5.343 13.243a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zm10.142 0a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM4.636 2.929a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414z"/></svg>
-            <svg class="moon-icon" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Dark Mode aktivieren" aria-pressed="false">
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
         </button>
 
         <h1>The Green Plate</h1>
@@ -294,7 +385,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="rezepte.html">Rezepte</a></li>
                 <li><a href="kollektion.html">Kollektionen</a></li>
-                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="überuns.html">Über uns</a></li>
             </ul>
         </nav>
     </header>
@@ -334,6 +425,33 @@
                 </div>
             </section>
 
+            <section class="featured-recipes">
+                <h2>Neu aus der Küche</h2>
+                <div class="featured-grid">
+                    <a class="featured-card" href="miso-aubergine-mit-jasminreis-und-fruehlingszwiebeln.html" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80');">
+                        <div class="featured-card-content">
+                            <span>Umami</span>
+                            <h3>Miso-Aubergine</h3>
+                            <p>Glasierte Aubergine mit Jasminreis und Frühlingszwiebeln.</p>
+                        </div>
+                    </a>
+                    <a class="featured-card" href="gruenes-shakshuka-mit-spinat-erbsen-und-kraeuteroel.html" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80');">
+                        <div class="featured-card-content">
+                            <span>Brunch</span>
+                            <h3>Grünes Shakshuka</h3>
+                            <p>Spinat, Erbsen und Kräuteröl für langsame Sonntage.</p>
+                        </div>
+                    </a>
+                    <a class="featured-card" href="pfirsich-caprese-mit-basilikumoel-und-geroesteten-mandeln.html" style="background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=800&q=80');">
+                        <div class="featured-card-content">
+                            <span>Sommer</span>
+                            <h3>Pfirsich-Caprese</h3>
+                            <p>Süß, cremig, frisch und in fünfzehn Minuten serviert.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
             <div class="info-box">
                 <strong>Projekt-Status: Phase 1</strong>
                 Diese Startseite dient als emotionaler Einstieg. Der Fokus liegt auf UX-Design und der Reduktion auf das Wesentliche, um den Nutzer direkt zur Kernfunktion – den Rezepten – zu leiten.
@@ -348,26 +466,6 @@
         </nav>
     </footer>
 
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-
-        // Prüfen, ob eine Einstellung gespeichert ist
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            body.classList.add('light-mode');
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            
-            // Einstellung speichern
-            if (body.classList.contains('light-mode')) {
-                localStorage.setItem('theme', 'light');
-            } else {
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    </script>
+    <script src="theme.js"></script>
 </body>
 </html>

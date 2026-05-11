@@ -1,0 +1,143 @@
+:root {
+    --text-color: var(--text-dark, #1a1a1a);
+    --surface-color: #ffffff;
+    --muted-text: #555555;
+    --footer-text: #777777;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --theme-transition: 0.3s ease;
+}
+
+html[data-theme="dark"] {
+    --bg-color: #161817;
+    --text-dark: #f7f3ea;
+    --text-color: #f7f3ea;
+    --border-light: #343a36;
+    --white: #222721;
+    --surface-color: #222721;
+    --muted-text: #c8c1b4;
+    --footer-text: #aaa296;
+    --shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--theme-transition), color var(--theme-transition);
+}
+
+header {
+    position: relative;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--theme-transition), border-color var(--theme-transition), color var(--theme-transition);
+}
+
+nav a,
+.footer-nav a {
+    color: var(--text-color);
+}
+
+p,
+li,
+td,
+.story-text,
+.philosophy-section p,
+.value-item p,
+.banner-content p,
+.legal-section p {
+    color: var(--muted-text);
+}
+
+.recipe-banner,
+.info-box {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border-color: var(--border-light);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.recipe-banner:hover {
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+.banner-content h2,
+.info-box strong,
+h1,
+h2,
+h3 {
+    color: var(--text-color);
+}
+
+footer {
+    color: var(--footer-text);
+    border-color: var(--border-light);
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    box-shadow: 0 8px 22px var(--shadow-color);
+    cursor: pointer;
+    transition: color var(--theme-transition), background-color var(--theme-transition), border-color var(--theme-transition);
+    z-index: 3;
+}
+
+.theme-toggle:hover {
+    color: var(--accent-gold);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 4px;
+}
+
+.theme-toggle__icon {
+    position: absolute;
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: opacity var(--theme-transition);
+}
+
+.theme-toggle__icon--sun,
+html[data-theme="dark"] .theme-toggle__icon--moon {
+    opacity: 0;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--sun,
+html[data-theme="light"] .theme-toggle__icon--moon,
+html:not([data-theme]) .theme-toggle__icon--moon {
+    opacity: 1;
+}
+
+.hero-content,
+.hero-content h2,
+.hero-content p,
+.overlay,
+.overlay span {
+    color: #f9f7f2;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 18px 24px;
+    }
+
+    .theme-toggle {
+        right: 16px;
+        top: 16px;
+        width: 38px;
+        height: 38px;
+    }
+}

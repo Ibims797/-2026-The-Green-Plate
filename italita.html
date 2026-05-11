@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kollektion | Italità</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('greenPlateTheme') || localStorage.getItem('theme');
+                if (theme !== 'dark' && theme !== 'light') {
+                    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.style.colorScheme = theme;
+            } catch (error) {
+                document.documentElement.dataset.theme = 'light';
+                document.documentElement.style.colorScheme = 'light';
+            }
+        })();
+    </script>
     <style>
         :root {
             --bg-color: #f9f7f2;
@@ -24,32 +39,39 @@
         .info-box { border: 1px solid var(--accent-gold); padding: 20px; border-radius: 15px; background-color: #fff; text-align: left; font-size: 0.9rem; }
         .back-link { display: inline-block; margin-top: 40px; color: var(--accent-gold); text-decoration: none; font-style: italic; }
     </style>
+    <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
-    <header><h1>The Green Plate</h1></header>
+    <header>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Dark Mode aktivieren" aria-pressed="false">
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
+        </button>
+        <h1>The Green Plate</h1></header>
 
     <main class="container">
         <div class="hero-image"></div>
-        
+
         <h2>Italità</h2>
         <div class="story-text">
             <p>
-                Die italienische Küche ist die Kunst des Weglassens. „Italità“ feiert die Perfektion einfacher 
-                Zutaten: Hartweizen, Meersalz und die goldene Wärme des Südens. Es ist das Lebensgefühl von 
+                Die italienische Küche ist die Kunst des Weglassens. „Italità“ feiert die Perfektion einfacher
+                Zutaten: Hartweizen, Meersalz und die goldene Wärme des Südens. Es ist das Lebensgefühl von
                 „La Dolce Vita“, das wir auf jeden Teller bringen wollen.
             </p>
         </div>
 
         <div class="info-box">
             <strong>Pasta-Geheimnisse</strong>
-            Echte Pasta braucht Raum. Kochen Sie Nudeln immer in reichlich, stark gesalzenem Wasser. 
-            Das „Pasta-Wasser“ ist zudem die Geheimzutat für jede Sauce – es bindet die Aromen und sorgt 
+            Echte Pasta braucht Raum. Kochen Sie Nudeln immer in reichlich, stark gesalzenem Wasser.
+            Das „Pasta-Wasser“ ist zudem die Geheimzutat für jede Sauce – es bindet die Aromen und sorgt
             für die perfekte, cremige Konsistenz.
         </div>
 
         <a href="kollektion.html" class="back-link">← Zurück zur Kollektion</a>
     </main>
 
+    <script src="theme.js"></script>
 </body>
 </html>

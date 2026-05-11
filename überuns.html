@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Green Plate | Über uns</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('greenPlateTheme') || localStorage.getItem('theme');
+                if (theme !== 'dark' && theme !== 'light') {
+                    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.style.colorScheme = theme;
+            } catch (error) {
+                document.documentElement.dataset.theme = 'light';
+                document.documentElement.style.colorScheme = 'light';
+            }
+        })();
+    </script>
     <style>
         :root {
             --bg-color: #f9f7f2;
@@ -127,10 +142,15 @@
             border-top: 1px solid var(--border-light);
         }
     </style>
+    <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
     <header>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Dark Mode aktivieren" aria-pressed="false">
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
+        </button>
         <h1>The Green Plate</h1>
         <nav>
             <ul>
@@ -143,7 +163,7 @@
     </header>
 
     <main class="container">
-        
+
         <section class="philosophy-section">
             <div class="image-placeholder"></div>
             <h2>Ästhetik auf dem Teller,<br>Klarheit im Geist.</h2>
@@ -182,5 +202,6 @@
         </nav>
     </footer>
 
+    <script src="theme.js"></script>
 </body>
 </html>

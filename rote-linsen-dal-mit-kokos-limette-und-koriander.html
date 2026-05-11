@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezept | Mediterrane Gemüsepfanne</title>
+    <title>Rezept | Rote-Linsen-Dal mit Kokos, Limette &amp; Koriander</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <script>
         (function () {
@@ -69,14 +69,14 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 980px;
             margin: 60px auto;
             padding: 0 20px;
         }
 
         .recipe-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .recipe-title h2 {
@@ -85,9 +85,24 @@
             margin: 0;
         }
 
+        .recipe-title p {
+            max-width: 680px;
+            margin: 18px auto 0 auto;
+            font-style: italic;
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
         .recipe-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.85fr 1.15fr;
             gap: 60px;
         }
 
@@ -96,6 +111,10 @@
             border-bottom: 1px solid var(--accent-gold);
             display: inline-block;
             margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
         }
 
         table {
@@ -107,6 +126,7 @@
         td {
             padding: 10px 0;
             border-bottom: 1px solid var(--border-light);
+            text-align: left;
         }
 
         .back-nav {
@@ -118,6 +138,12 @@
             color: var(--accent-gold);
             text-decoration: none;
             font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .recipe-title h2 { font-size: 2.25rem; }
+            .recipe-image { height: 300px; }
+            .recipe-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
     <link rel="stylesheet" href="theme.css">
@@ -142,37 +168,51 @@
 
     <main class="container">
         <div class="recipe-title">
-            <h2>Mediterrane Gemüsepfanne</h2>
-            <p>Die Essenz des Sommers auf einem Teller.</p>
+            <h2>Rote-Linsen-Dal mit Kokos, Limette &amp; Koriander</h2>
+            <p>Cremig, golden und wohltuend – ein unkompliziertes Gericht mit viel Tiefe.</p>
         </div>
+
+        <img class="recipe-image" src="https://images.unsplash.com/photo-1515516969-d4008cc6241a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Rote-Linsen-Dal mit Kokos, Limette &amp; Koriander">
 
         <div class="recipe-grid">
             <section>
                 <h3>Zutaten</h3>
                 <ul>
-                    <li>2 rote Paprika</li>
-                    <li>1 Zucchini</li>
-                    <li>Olivenöl & Meersalz</li>
+                    <li>220g rote Linsen</li>
+                    <li>1 Dose Kokosmilch</li>
+                    <li>1 Zwiebel</li>
+                    <li>2 Knoblauchzehen</li>
+                    <li>1 Stück Ingwer</li>
+                    <li>1 TL Kurkuma</li>
+                    <li>1 TL Kreuzkümmel</li>
+                    <li>1 Limette</li>
+                    <li>Frischer Koriander</li>
                 </ul>
+
                 <h3>Nährwerte</h3>
                 <table>
-                    <tr><td>Kalorien</td><td>250 kcal</td></tr>
-                    <tr><td>Fett</td><td>12 g</td></tr>
+                    <tr><td>Kalorien</td><td>ca. 460 kcal</td></tr>
+                    <tr><td>Fett</td><td>21 g</td></tr>
+                    <tr><td>Kohlenhydrate</td><td>47 g</td></tr>
+                    <tr><td>Eiweiß</td><td>18 g</td></tr>
                 </table>
             </section>
 
             <section>
                 <h3>Zubereitung</h3>
                 <ol>
-                    <li>Gemüse in feine Streifen schneiden.</li>
-                    <li>In der Pfanne goldbraun dünsten.</li>
-                    <li>Mit Kräutern vollenden.</li>
+                    <li>Zwiebel, Knoblauch und Ingwer fein hacken und in etwas Öl anschwitzen.</li>
+                    <li>Kurkuma und Kreuzkümmel hinzufügen und kurz rösten, bis die Gewürze duften.</li>
+                    <li>Rote Linsen abspülen und zusammen mit Kokosmilch und etwas Wasser in den Topf geben.</li>
+                    <li>Das Dal 18–22 Minuten sanft köcheln lassen, bis die Linsen cremig zerfallen.</li>
+                    <li>Mit Limettensaft, Salz und Pfeffer abschmecken.</li>
+                    <li>Mit frischem Koriander und optional etwas Kokosjoghurt servieren.</li>
                 </ol>
             </section>
         </div>
 
         <div class="back-nav">
-            <a href="index.html">← Zurück zur Startseite</a>
+            <a href="rezepte.html">← Zurück zur Übersicht</a>
         </div>
     </main>
 

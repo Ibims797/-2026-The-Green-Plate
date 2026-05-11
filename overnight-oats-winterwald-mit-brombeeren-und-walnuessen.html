@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezept | Mediterrane Gemüsepfanne</title>
+    <title>Rezept | Overnight Oats „Winterwald“ mit Brombeeren &amp; Walnüssen</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <script>
         (function () {
@@ -69,14 +69,14 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 980px;
             margin: 60px auto;
             padding: 0 20px;
         }
 
         .recipe-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .recipe-title h2 {
@@ -85,9 +85,24 @@
             margin: 0;
         }
 
+        .recipe-title p {
+            max-width: 680px;
+            margin: 18px auto 0 auto;
+            font-style: italic;
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
         .recipe-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.85fr 1.15fr;
             gap: 60px;
         }
 
@@ -96,6 +111,10 @@
             border-bottom: 1px solid var(--accent-gold);
             display: inline-block;
             margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
         }
 
         table {
@@ -107,6 +126,7 @@
         td {
             padding: 10px 0;
             border-bottom: 1px solid var(--border-light);
+            text-align: left;
         }
 
         .back-nav {
@@ -118,6 +138,12 @@
             color: var(--accent-gold);
             text-decoration: none;
             font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .recipe-title h2 { font-size: 2.25rem; }
+            .recipe-image { height: 300px; }
+            .recipe-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
     <link rel="stylesheet" href="theme.css">
@@ -142,37 +168,50 @@
 
     <main class="container">
         <div class="recipe-title">
-            <h2>Mediterrane Gemüsepfanne</h2>
-            <p>Die Essenz des Sommers auf einem Teller.</p>
+            <h2>Overnight Oats „Winterwald“ mit Brombeeren &amp; Walnüssen</h2>
+            <p>Ein nährstoffreiches Frühstück, das über Nacht die volle Kraft entfaltet.</p>
         </div>
+
+        <img class="recipe-image" src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Overnight Oats „Winterwald“ mit Brombeeren &amp; Walnüssen">
 
         <div class="recipe-grid">
             <section>
                 <h3>Zutaten</h3>
                 <ul>
-                    <li>2 rote Paprika</li>
-                    <li>1 Zucchini</li>
-                    <li>Olivenöl & Meersalz</li>
+                    <li>60g zarte Haferflocken</li>
+                    <li>150ml Hafermilch oder ungesüßte Mandelmilch</li>
+                    <li>1 EL Chiasamen</li>
+                    <li>Eine Prise Ceylon-Zimt</li>
+                    <li>100g frische oder tiefgekühlte Brombeeren</li>
+                    <li>4-5 Walnusskerne</li>
+                    <li>1 TL Hanfsamen</li>
+                    <li>Optional: Ein Schuss Ahornsirup</li>
                 </ul>
+
                 <h3>Nährwerte</h3>
                 <table>
-                    <tr><td>Kalorien</td><td>250 kcal</td></tr>
-                    <tr><td>Fett</td><td>12 g</td></tr>
+                    <tr><td>Kalorien</td><td>ca. 310 kcal</td></tr>
+                    <tr><td>Fett</td><td>11 g</td></tr>
+                    <tr><td>Kohlenhydrate</td><td>42 g</td></tr>
+                    <tr><td>Eiweiß</td><td>9 g</td></tr>
                 </table>
             </section>
 
             <section>
                 <h3>Zubereitung</h3>
                 <ol>
-                    <li>Gemüse in feine Streifen schneiden.</li>
-                    <li>In der Pfanne goldbraun dünsten.</li>
-                    <li>Mit Kräutern vollenden.</li>
+                    <li>In einem sauberen Weckglas oder Schraubglas die Haferflocken mit den Chiasamen und dem Zimt vermischen.</li>
+                    <li>Die Pflanzenmilch darübergießen und alles mit einem Löffel gründlich verrühren, bis keine Klumpen mehr vorhanden sind. Falls gewünscht, jetzt den Ahornsirup unterrühren.</li>
+                    <li>Das Glas fest verschließen und für mindestens 4 Stunden, idealerweise über Nacht, in den Kühlschrank stellen. Die Chiasamen und Haferflocken saugen die Flüssigkeit auf und bilden eine puddingartige Konsistenz.</li>
+                    <li>Am nächsten Morgen die Oats kurz durchrühren. Wenn sie zu fest sind, noch einen Schluck Milch dazugeben.</li>
+                    <li>Die Brombeeren waschen (falls frisch) und die Hälfte davon vorsichtig unter die Oats heben, die andere Hälfte als Topping obendrauf geben.</li>
+                    <li>Die Walnusskerne grob zerbrechen und zusammen mit den Hanfsamen über das Frühstück streuen. Die Kombination aus weichen Oats und knackigen Nüssen sorgt für das perfekte Mundgefühl.</li>
                 </ol>
             </section>
         </div>
 
         <div class="back-nav">
-            <a href="index.html">← Zurück zur Startseite</a>
+            <a href="rezepte.html">← Zurück zur Übersicht</a>
         </div>
     </main>
 
