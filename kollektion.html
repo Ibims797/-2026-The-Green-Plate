@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Green Plate | Kollektionen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f7f2;
+            --text-dark: #1a1a1a;
+            --accent-gold: #c5a059;
+            --border-light: #e0dcd0;
+            --white: #ffffff;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+        }
+
+        /* HEADER (KONSISTENT) */
+        header {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            letter-spacing: 5px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* KOLLEKTIONEN GRID */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .intro h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-style: italic;
+        }
+
+        /* MASONRY-STYLE GRID */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 250px;
+            gap: 25px;
+            grid-auto-flow: dense;
+        }
+
+        .gallery-item {
+        display: block; /* Wichtig, damit der Link sich wie ein Container verhält */
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        height: 100%; /* Füllt die Grid-Zelle aus */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Unregelmäßige Größen für den Magazin-Look */
+        .wide { grid-column: span 2; }
+        .tall { grid-row: span 2; }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay span {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            color: #888;
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border-light);
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Green Plate</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rezepte.html">Rezepte</a></li>
+                <li><a href="kollektion.html">Kollektionen</a></li>
+                <li><a href="überuns.html">Über uns</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>Visuelle Inspirationen</h2>
+            <p>Saisonale Impressionen und die Ästhetik des Kochens.</p>
+        </section>
+
+        <div class="gallery">
+            <a href="morgenroete.html" class="gallery-item wide">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80" alt="Frühstück">
+                <div class="overlay"><span>Morgenröte</span></div>
+            </a>
+
+            <a href="rustic-dinner.html" class="gallery-item tall">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80" alt="Steak">
+                <div class="overlay"><span>Rustic Dinner</span></div>
+            </a>
+
+            <a href="erntezeit.html" class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=500&q=80" alt="Gemüse">
+                <div class="overlay"><span>Erntezeit</span></div>
+            </a>
+
+            <a href="vitamins.html" class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=500&q=80" alt="Smoothie">
+                <div class="overlay"><span>Vitamins</span></div>
+            </a>
+
+            <a href="italita.html" class="gallery-item tall">
+                <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&w=500&q=80" alt="Pasta">
+                <div class="overlay"><span>Italità</span></div>
+            </a>
+
+            <a href="table-setting.html" class="gallery-item wide">
+                <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=800&q=80" alt="Tisch">
+                <div class="overlay"><span>Table Setting</span></div>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 THE GREEN PLATE — KULINARISCHE ÄSTHETIK</p>
+        <nav class="footer-nav">
+            <a href="impressum.html">Impressum</a>
+        </nav>
+    </footer>
+
+</body>
+</html>

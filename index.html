@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Green Plate | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f7f2;      /* Cremeweiß aus dem Bild */
+            --text-dark: #1a1a1a;
+            --accent-gold: #c5a059;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+        }
+
+        /* HEADER DESIGN NACH BILDVORLAGE */
+        header {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            letter-spacing: 5px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: var(--accent-gold);
+        }
+
+        /* INHALT DER STARTSEITE */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .content-section h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: var(--text-dark);
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 1px solid var(--text-dark);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--text-dark);
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-top: 1px solid #e0dcd0;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Green Plate</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rezepte.html">Rezepte</a></li>
+                <li><a href="kollektion.html">Kollektionen</a></li>
+                <li><a href="überuns.html">Über uns</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-section">
+        <h2>Kulinarik trifft Ästhetik</h2>
+        <p>
+            Willkommen bei THE GREEN PLATE. Wir glauben daran, dass gesundes Essen nicht nur den Körper nährt, 
+            sondern auch die Sinne inspirieren sollte. Unsere Philosophie vereint saisonale Frische mit 
+            minimalistischem Design. Entdecken Sie handverlesene Rezepte für einen bewussten Lebensstil.
+        </p>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 THE GREEN PLATE — KULINARISCHE ÄSTHETIK</p>
+        <nav class="footer-nav">
+            <a href="impressum.html">Impressum</a>
+        </nav>
+    </footer>
+
+</body>
+</html>

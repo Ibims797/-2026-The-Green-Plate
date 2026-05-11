@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezept | Wildkräutersalat mit Burrata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f7f2;
+            --text-dark: #1a1a1a;
+            --accent-gold: #c5a059;
+            --border-light: #e0dcd0;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .recipe-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .recipe-title h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        h3 {
+            font-family: var(--font-serif);
+            border-bottom: 1px solid var(--accent-gold);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .back-nav a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Green Plate</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rezepte.html">Rezepte</a></li>
+                <li><a href="#">Kollektionen</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="recipe-title">
+            <h2>Wildkräutersalat & Burrata</h2>
+            <p>Ein Zusammenspiel aus herben Kräutern und cremiger Textur.</p>
+        </div>
+
+        <div class="recipe-grid">
+            <section>
+                <h3>Zutaten</h3>
+                <ul>
+                    <li>150g gemischte Wildkräuter</li>
+                    <li>1 frische Burrata</li>
+                    <li>Eine Handvoll Walnüsse</li>
+                    <li>Balsamico-Glace & Honig</li>
+                    <li>Gutes Olivenöl</li>
+                </ul>
+                <h3>Nährwerte</h3>
+                <table>
+                    <tr><td>Kalorien</td><td>380 kcal</td></tr>
+                    <tr><td>Fett</td><td>28 g</td></tr>
+                    <tr><td>Eiweiß</td><td>14 g</td></tr>
+                </table>
+            </section>
+
+            <section>
+                <h3>Zubereitung</h3>
+                <ol>
+                    <li>Die Kräuter waschen und vorsichtig trocken tupfen.</li>
+                    <li>Walnüsse in einer Pfanne ohne Fett kurz anrösten.</li>
+                    <li>Salat auf einem flachen Teller anrichten, Burrata in die Mitte setzen.</li>
+                    <li>Mit Olivenöl, Honig und Balsamico beträufeln und servieren.</li>
+                </ol>
+            </section>
+        </div>
+
+        <div class="back-nav">
+            <a href="rezepte.html">← Zurück zur Übersicht</a>
+        </div>
+    </main>
+
+</body>
+</html>

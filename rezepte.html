@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Green Plate | Rezepte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f7f2;
+            --text-dark: #1a1a1a;
+            --accent-gold: #c5a059;
+            --border-light: #e0dcd0;
+            --white: #ffffff;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+        }
+
+        /* HEADER (KONSISTENT ZUM BILD) */
+        header {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            letter-spacing: 5px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* REZEPT-BANNER STYLING */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .recipe-banner {
+            display: flex; /* Bild links, Text rechts */
+            align-items: center;
+            background-color: var(--white);
+            text-decoration: none; /* Entfernt Unterstreichung vom Link */
+            color: var(--text-dark);
+            border-radius: 20px; /* Abgerundete Ecken */
+            overflow: hidden; /* Damit das Bild die Ecken nicht überlagert */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Sanfter Schatten */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-light);
+            margin-bottom: 30px;
+        }
+
+        .recipe-banner:hover {
+            transform: translateY(-5px); /* Kleiner Sprung nach oben */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        /* BILD IM BANNER */
+        .banner-image {
+            width: 35%; /* Nimmt ein Drittel des Platzes ein */
+            height: 200px;
+            background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80'); /* Platzhalter-Bild */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* TEXT IM BANNER */
+        .banner-content {
+            padding: 30px;
+            width: 65%;
+        }
+
+        .banner-content h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            color: var(--text-dark);
+        }
+
+        .banner-content p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Green Plate</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rezepte.html">Rezepte</a></li>
+                <li><a href="kollektion.html">Kollektionen</a></li>
+                <li><a href="überuns.html">Über uns</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2 style="font-family: var(--font-serif); text-align: center; margin-bottom: 40px;">Unsere Auswahl</h2>
+
+        <a href="mediterranegemüsepfanne.html" class="recipe-banner">
+            <div class="banner-image"></div>
+            <div class="banner-content">
+                <h2>Mediterrane Gemüsepfanne</h2>
+                <p>Eine Komposition aus sonnengereiftem Gemüse, veredelt mit feinstem Olivenöl und frischen Gartenkräutern.</p>
+            </div>
+        </a>
+
+        <a href="wildkraeutersalat.html" class="recipe-banner">
+            <div class="banner-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80');"></div>
+            <div class="banner-content">
+                <h2>Wildkräutersalat & Burrata</h2>
+                <p>Frische Wildkräuter treffen auf cremig-zarte Burrata und geröstete Walnüsse. Ein leichtes Highlight für Genießer.</p>
+            </div>
+        </a>
+
+        <div style="text-align: center; opacity: 0.3; margin-top: 50px; font-style: italic;">
+            Weitere Kreationen folgen in Kürze...
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 THE GREEN PLATE — KULINARISCHE ÄSTHETIK</p>
+        <nav class="footer-nav">
+            <a href="impressum.html">Impressum</a>
+        </nav>
+    </footer>
+
+</body>
+</html>
